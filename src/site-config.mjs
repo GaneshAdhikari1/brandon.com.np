@@ -14,7 +14,7 @@ export const site = {
   instagram: "[SOCIAL MEDIA LINK]",
   facebook: "[SOCIAL MEDIA LINK]",
   analyticsId: "[ANALYTICS ID]",
-  baseUrl: "https://brandon-tailors.example"
+  baseUrl: "https://brandon-tailors.rajashrim34.chatgpt.site"
 };
 
 export const routes = [
