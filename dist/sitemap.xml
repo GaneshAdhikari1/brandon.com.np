@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://brandon-tailors.example/</loc></url>
+  <url><loc>https://brandon-tailors.example/about</loc></url>
+  <url><loc>https://brandon-tailors.example/fabrics</loc></url>
+  <url><loc>https://brandon-tailors.example/services/suits</loc></url>
+  <url><loc>https://brandon-tailors.example/services/shirts</loc></url>
+  <url><loc>https://brandon-tailors.example/services/trousers</loc></url>
+  <url><loc>https://brandon-tailors.example/services/blazers</loc></url>
+  <url><loc>https://brandon-tailors.example/services/waistcoats</loc></url>
+  <url><loc>https://brandon-tailors.example/services/traditional-wear</loc></url>
+  <url><loc>https://brandon-tailors.example/services/alterations</loc></url>
+  <url><loc>https://brandon-tailors.example/accessories</loc></url>
+  <url><loc>https://brandon-tailors.example/measurement-fitting</loc></url>
+  <url><loc>https://brandon-tailors.example/book</loc></url>
+  <url><loc>https://brandon-tailors.example/lookbook</loc></url>
+  <url><loc>https://brandon-tailors.example/pricing-faq</loc></url>
+  <url><loc>https://brandon-tailors.example/contact</loc></url>
+  <url><loc>https://brandon-tailors.example/privacy</loc></url>
+  <url><loc>https://brandon-tailors.example/terms</loc></url>
+</urlset>
