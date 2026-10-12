@@ -1,4 +1,4 @@
-import { mkdir, rm, writeFile, copyFile } from 'node:fs/promises';
+import { mkdir, rm, writeFile, copyFile, readdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { site, routes } from '../src/site-config.mjs';
 
@@ -7,10 +7,14 @@ const dist = join(root, 'dist');
 await rm(dist, { recursive: true, force: true });
 await mkdir(join(dist, 'assets'), { recursive: true });
 await mkdir(join(dist, 'images'), { recursive: true });
+await mkdir(join(dist, 'images', 'nepali-luxury-suits-2026'), { recursive: true });
 await copyFile(join(root, 'src', 'styles.css'), join(dist, 'assets', 'styles.css'));
 await copyFile(join(root, 'src', 'app.js'), join(dist, 'assets', 'app.js'));
 await copyFile(join(root, 'src', 'assets', 'brandon-tailors-logo.png'), join(dist, 'assets', 'brandon-tailors-logo.png'));
 await copyFile(join(root, 'public', 'images', 'mens-luxury-business-suits-2026.png'), join(dist, 'images', 'mens-luxury-business-suits-2026.png'));
+for (const file of await readdir(join(root, 'public', 'images', 'nepali-luxury-suits-2026'))) {
+  if (file.endsWith('.png')) await copyFile(join(root, 'public', 'images', 'nepali-luxury-suits-2026', file), join(dist, 'images', 'nepali-luxury-suits-2026', file));
+}
 
 const img = {
   hero:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=2200&q=86',
@@ -65,8 +69,17 @@ const cards=items=>`<div class="grid grid-3">${items.map((x,i)=>`<article class=
 
 const process = ['Consult','Choose','Measure','Refine','Collect'].map((t,i)=>`<div class="number-card reveal"><b>0${i+1}</b><h3>${t}</h3><p>${['Share the occasion, timeline and budget.','Compare fabrics, details and silhouettes.','We record a precise profile for your garment.','Fittings fine-tune balance, comfort and drape.','Leave with a garment made for you.'][i]}</p></div>`).join('');
 
+const premiumCollection = [
+  {title:'Wedding Day Special',subtitle:'Luxury Bespoke Wedding Suits',copy:'Exquisitely Tailored Coat, Pant, Shirt, Waistcoat & Tuxedo – Crafted for Your Wedding Day.',href:'/services/suits/'},
+  {title:'Wedding Special',subtitle:'Handcrafted Daura Suruwal',copy:'Premium Traditional Nepali Wedding Attire with Exquisite Hand Embroidery and Elegant Detailing.',href:'/services/traditional-wear/'},
+  {title:'Traditional Wedding Collection',subtitle:'Daura Suruwal, Coat & Waistcoat',copy:'A Perfect Blend of Nepali Tradition, Timeless Elegance & Premium Tailoring.',href:'/services/traditional-wear/'},
+  {title:'Executive Office Wear',subtitle:'Premium Formal Suits',copy:'Sophisticated Business Suits, Expertly Tailored for Comfort, Confidence & Professional Elegance.',href:'/services/suits/'},
+  {title:'Luxury Party Wear',subtitle:'Exclusive Designer Collection',copy:'Elegant Party Suits, Stylish Blazers & Premium Formal Wear – Designed to Make Every Occasion Extraordinary.',href:'/services/blazers/'}
+];
+const premiumCollectionList = premiumCollection.map((item,i)=>`<a class="premium-collection__item reveal" href="${item.href}"><span class="premium-collection__number">${String(i+1).padStart(2,'0')}</span><span class="premium-collection__content"><span class="premium-collection__title">${item.title}</span><span class="premium-collection__subtitle">${item.subtitle}</span><span class="premium-collection__description">${item.copy}</span></span><span class="premium-collection__arrow" aria-hidden="true">↗</span></a>`).join('');
+
 const homeBody=`<section class="hero"><div class="hero-media"><img src="${img.hero}" alt="Tailor adjusting a premium made-to-measure suit" fetchpriority="high"></div><div class="container hero-content"><span class="eyebrow">Premium cloth · Personal guidance · Precise fit</span><h1>Tailored for your life. <em>Crafted for your perfect fit.</em></h1><p>Discover premium fabrics and made-to-measure shirts, suits, blazers, trousers, waistcoats and traditional wear—shaped around your measurements, occasion, style and budget.</p><div class="btn-row"><a class="btn btn--light" href="/book/">Book a free consultation</a><a class="btn btn--ghost" href="/fabrics/">Explore our fabrics</a></div></div><div class="hero-notes"><span>Made to measure</span><span>Fabric by the metre</span><span>Personal styling</span></div></section>
-<section class="section container">${sectionHead('The house','Cloth, craft and counsel—under one roof.','We make choosing the right garment feel simple. Start with your occasion and budget; we’ll guide the fabric, style and fit from there.')}${cards([{title:'Custom suiting',copy:'Business, wedding and evening suits designed around your posture and preferences.',href:'/services/suits/',image:img.suit},{title:'Made-to-measure shirts',copy:'Collars, cuffs, fit and fabric considered down to the last stitch.',href:'/services/shirts/',image:img.shirts},{title:'Traditional wear',copy:'Culturally considered garments for ceremonies, weddings and meaningful moments.',href:'/services/traditional-wear/',image:img.traditional}])}</section>
+<section class="section premium-collection"><div class="container"><div class="premium-collection__head reveal"><div><span class="eyebrow">BrandON Nepal · Premium collection</span><h2>Tailoring for every important occasion.</h2></div><p class="lede">Five considered collections, each shaped around your measurements, personal style and the moment ahead.</p></div><div class="premium-collection__layout"><figure class="premium-collection__visual reveal"><img src="${img.suit}" alt="A premium made-to-measure wedding suit" loading="lazy"><figcaption><span>Made for you</span><strong>Personal fit. Timeless finish.</strong></figcaption></figure><div class="premium-collection__list">${premiumCollectionList}</div></div></div></section>
 <section class="editorial"><div class="editorial-media"><img src="${img.fabric}" alt="Close detail of premium woven fabric" loading="lazy"></div><div class="editorial-copy"><span class="eyebrow">Fabric by the metre</span><h2>Begin with how you want to feel.</h2><p>Breathable linen for summer. Refined wool for the boardroom. Rich texture for winter. We help you compare comfort, drape, durability and value—not just colour.</p><div class="btn-row"><a class="btn btn--light" href="/fabrics/">Browse the cloth library</a><a class="btn btn--ghost" href="/fabrics/#estimate">Estimate fabric</a></div></div></section>
 <section class="section section--dark"><div class="container">${sectionHead('From idea to fitting','A calmer way to create something personal.','Each step gives you clarity before we move forward.')}<div class="grid grid-4">${process}</div></div></section>
 <section class="section container">${sectionHead('Explore services','One wardrobe, many moments.')}<div class="service-strip">${serviceNav.map(([u,t],i)=>`<a class="reveal" href="${u}"><small>0${i+1}</small><h3>${t}</h3><span>Discover →</span></a>`).join('')}</div></section>
@@ -97,13 +110,45 @@ const fittingBody=`${pageHero('Measurement & Fitting','A process you can see','K
 const bookingFields=`<div class="field"><label for="full-name">Full name</label><input id="full-name" name="name" required autocomplete="name"></div><div class="field"><label for="phone">Phone</label><input id="phone" name="phone" required autocomplete="tel"></div><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div><div class="field"><label for="type">Consultation type</label><select id="type" name="type"><option>In-store consultation</option><option>Video consultation</option><option>Phone consultation</option><option>Fabric consultation</option><option>Measurement appointment</option><option>Suit consultation</option><option>Shirt consultation</option><option>Traditional-wear consultation</option><option>Alteration assessment</option></select></div><div class="field"><label for="date">Preferred date</label><input id="date" name="date" type="date" required></div><div class="field"><label for="time">Preferred time</label><input id="time" name="time" type="time" required></div><div class="field"><label for="garment-interest">Garment of interest</label><input id="garment-interest" name="garment"></div><div class="field"><label for="occasion">Occasion</label><input id="occasion" name="occasion"></div><div class="field"><label for="budget">Approximate budget</label><input id="budget" name="budget" placeholder="Optional"></div><div class="field"><label for="deadline">Required by</label><input id="deadline" name="deadline" type="date"></div><div class="field field--full"><label for="message">How can we help?</label><textarea id="message" name="message"></textarea></div><label class="checkline field--full"><input type="checkbox" required> I agree to be contacted about this request and have read the <a href="/privacy/"><u>privacy notice</u></a>.</label>`;
 const bookingBody=`${pageHero('Book a Free Consultation','Your first step','Share the occasion, timeline and budget. We’ll prepare a focused conversation about fabric, style and fit.',img.hero)}<section class="section container"><div class="grid grid-2"><div><span class="eyebrow">What to expect</span><h2>A useful conversation, not a sales pitch.</h2><p class="lede">Bring references if you have them. We’ll help narrow the choices, estimate fabric and outline practical next steps.</p><div class="notice"><strong>Calendar connection:</strong> ${esc(site.bookingUrl)}<br>Replace this placeholder with your Calendly or native booking link.</div></div><form class="form-shell" data-demo-form><div class="form-grid">${bookingFields}</div><button class="btn" type="submit">Request my free consultation</button><div class="form-status" tabindex="-1">Your request is ready. Connect the form endpoint to deliver submissions before launch.</div></form></div></section>`;
 
-const gallery=[
-  ['Men’s luxury business suits · 2026 collection','/images/mens-luxury-business-suits-2026.png','business',false],
-  ['Custom shirt',img.shirts,'shirts',true],['Blazer detail',img.blazer,'blazers',true],['Tailoring craft',img.craft,'casual',true],
-  ['Traditional style',img.traditional,'traditional',true],['Wedding tailoring',img.wedding,'wedding',true],
-  ['Finishing details',img.details,'waistcoats',true],['Fabric study',img.fabric,'casual',true]
+const suitEdit=[
+  ['01-midnight-navy-relaxed.png','Midnight Navy','A relaxed two-button silhouette with quiet structure.'],
+  ['02-charcoal-double-breasted.png','Charcoal Double-Breasted','A commanding six-button front with a clean, modern line.'],
+  ['03-forest-green-textured-wool.png','Forest Green Wool','Rich texture and an understated colour for cooler occasions.'],
+  ['04-chocolate-brown-flannel.png','Chocolate Brown','Warm tonal dressing with a softly tailored profile.'],
+  ['05-black-tonal-pinstripe.png','Black Tonal Pinstripe','Sharp double-breasted tailoring with subtle vertical rhythm.'],
+  ['06-slate-blue-high-twist-wool.png','Slate Blue','A versatile business suit with an easy, composed drape.'],
+  ['07-burgundy-double-breasted.png','Burgundy Statement','Deep colour and confident proportions for evening occasions.'],
+  ['08-warm-taupe-quiet-luxury.png','Warm Taupe','Unstructured elegance in a soft, contemporary neutral.'],
+  ['09-navy-windowpane.png','Navy Windowpane','A restrained check that rewards a closer look.'],
+  ['10-grey-herringbone.png','Grey Herringbone','Classic texture balanced by a crisp modern cut.'],
+  ['11-cream-summer-business.png','Cream Summer Suit','Lightweight, breathable tailoring for warmer days.'],
+  ['12-deep-teal-mohair.png','Deep Teal','A luminous formal cloth with a distinctive evening presence.'],
+  ['13-graphite-three-piece.png','Graphite Three-Piece','Layered formality with a sharply balanced waistcoat.'],
+  ['14-muted-olive-contemporary.png','Muted Olive','A grounded alternative to traditional business neutrals.'],
+  ['15-ink-blue-velvet.png','Ink Blue Velvet','A rich, tactile finish designed for memorable evenings.']
 ];
-const lookbookBody=`${pageHero('Lookbook','Ideas, not impersonations','A visual guide to silhouettes, textures and occasions. Replace these sample-style images with verified BrandON work before launch.',img.blazer)}<section class="section container"><div data-filter-group data-target="#lookbook-grid"><div class="filters"><button class="filter-btn active" data-filter="all">All</button>${['business','wedding','shirts','blazers','waistcoats','traditional','casual'].map(x=>`<button class="filter-btn" data-filter="${x}">${x[0].toUpperCase()+x.slice(1)}</button>`).join('')}</div><div class="lookbook-grid" id="lookbook-grid">${gallery.map(([t,u,c,isSample])=>`<button class="lookbook-item catalog-item" data-category="${c}" data-caption="${isSample?'Sample Style — ':''}${t}"><img src="${u}" alt="${isSample?'Sample style: ':''}${t}" loading="lazy"><span>${isSample?'Sample Style · ':''}${t}</span></button>`).join('')}</div></div></section><dialog class="lightbox" id="lightbox"><button class="lightbox-close" aria-label="Close">×</button><img id="lightbox-img" alt=""><div class="lightbox-caption" id="lightbox-caption"></div></dialog>`;
+const lookbookBody=`${pageHero('Lookbook','The 2026 suit edit','Move through fifteen expressions of modern tailoring. Scroll, swipe or use the controls to explore the collection.',img.blazer)}
+<section class="collection-story" data-collection-story aria-label="2026 suit collection">
+  <div class="collection-stage">
+    <div class="collection-copy">
+      <span class="eyebrow">The 2026 suit edit</span>
+      <h2>Tailoring, in every shade.</h2>
+      <p class="collection-intro">From boardroom navy to evening velvet, each look explores a different balance of cloth, colour and cut.</p>
+      <div class="collection-meta" aria-live="polite">
+        <span class="collection-count">01 / ${String(suitEdit.length).padStart(2,'0')}</span>
+        <h3>${suitEdit[0][1]}</h3>
+        <p>${suitEdit[0][2]}</p>
+      </div>
+      <div class="btn-row"><a class="btn" href="/services/suits/">Explore custom suits</a><a class="btn btn--ghost" href="/book/">Book a fitting</a></div>
+    </div>
+    <div class="collection-visual" role="region" aria-roledescription="carousel" aria-label="Suit styles" tabindex="0">
+      <div class="collection-slides">${suitEdit.map(([file,title,copy],i)=>`<figure class="collection-slide${i===0?' is-active':''}" data-title="${title}" data-copy="${copy}" aria-hidden="${i===0?'false':'true'}"><img src="/images/nepali-luxury-suits-2026/${file}" alt="Model wearing the ${title} tailored suit" ${i===0?'fetchpriority="high"':'loading="lazy"'}></figure>`).join('')}</div>
+      <div class="collection-controls"><button type="button" class="collection-arrow collection-prev" aria-label="Previous suit">←</button><button type="button" class="collection-arrow collection-next" aria-label="Next suit">→</button></div>
+      <div class="collection-dots" role="tablist" aria-label="Choose a suit">${suitEdit.map(([,title],i)=>`<button type="button" role="tab" aria-label="Show ${title}" aria-selected="${i===0?'true':'false'}" data-slide="${i}"></button>`).join('')}</div>
+    </div>
+    <div class="collection-scroll-cue" aria-hidden="true"><span></span>Scroll to explore</div>
+  </div>
+</section>`;
 
 const faqs=[['How many fittings are required?','The number depends on the garment and complexity. We confirm the likely fitting plan during consultation and adjust if the garment requires it.'],['How long does tailoring take?','As a planning guide, shirts may take 1–2 weeks and complex suits 2–3 weeks. Fabric availability, design, fittings, workload and delivery location can change this.'],['Can I bring my own fabric?','Yes, subject to inspection. We will check width, length, condition and suitability before accepting it for a garment.'],['How much fabric do I need?','It depends on measurements, fabric width, pattern matching and design. Use our calculator for a preliminary range, then confirm with us before purchasing.'],['Are alterations included?','Included adjustments depend on the agreed order. We explain the fitting and alteration scope before work begins.'],['Do you offer wedding packages?','Wedding coordination can include suits, shirts, waistcoats and accessories. The final package is tailored to the group, timing and fabric.'],['Do you accept urgent orders?','Express work may be possible depending on fabric, complexity and capacity. An express charge may apply.'],['Can I submit measurements online?','You can submit an enquiry profile online, but professional confirmation is recommended before cutting.'],['How should I care for a tailored garment?','Care depends on fabric and construction. We provide garment-specific guidance at collection.'],['What if more adjustments are needed?','Contact us promptly. We will assess fit against the agreed measurements and explain the available adjustment options.']];
 const pricingBody=`${pageHero('Pricing & FAQ','Clarity before commitment','Understand what shapes the quote, the expected timeline and the questions worth asking before we begin.',img.details)}<section class="section container">${sectionHead('Starting points','A transparent framework.','Exact prices are confirmed after fabric, construction, styling and timing are understood. Replace the placeholders below with verified prices.')}<div class="grid grid-3">${['Fabric by the metre','Custom shirts','Custom trousers','Two-piece suits','Three-piece suits','Blazers','Waistcoats','Traditional wear','Alterations'].map(t=>`<article class="card"><span class="eyebrow">From</span><h3>${t}</h3><p><strong>[STARTING PRICE]</strong></p><p>Final quotation depends on material, construction, custom details, fittings and turnaround.</p></article>`).join('')}</div></section><section class="section section--sand"><div class="container">${sectionHead('Questions','What clients often ask.')}<div class="accordion">${faqs.map(([q,a],i)=>`<div class="accordion-item"><button class="accordion-btn" aria-expanded="false" aria-controls="faq-${i}">${q}<span>+</span></button><div class="accordion-panel" id="faq-${i}">${a}</div></div>`).join('')}</div></div></section>`;
