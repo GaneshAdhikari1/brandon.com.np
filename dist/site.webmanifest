@@ -1,8 +1,0 @@
-{
-  "name": "BrandON Tailors",
-  "short_name": "BrandON",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#fffdf8",
-  "theme_color": "#1d1b18"
-}
