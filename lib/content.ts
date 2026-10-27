@@ -27,6 +27,7 @@ export type Collection = {
 };
 
 const suit = (file: string) => `/images/nepali-luxury-suits-2026/${file}`;
+const wedding = (file: string) => `/images/wedding-special-gallery/${file}`;
 
 export const collections: Collection[] = [
   {
@@ -37,7 +38,31 @@ export const collections: Collection[] = [
     description: "Custom-tailored wedding suits, coats, pants and waistcoats planned as a refined, coordinated look for the occasion.",
     options: ["Suit, coat and trouser coordination", "Waistcoat styling", "Fabric and colour guidance", "Details discussed during consultation"],
     hero: "/images/wedding-special-embroidered-suit.png",
-    gallery: ["/images/wedding-special-embroidered-suit.png", suit("11-cream-summer-business.png"), suit("07-burgundy-double-breasted.png"), suit("13-graphite-three-piece.png")],
+    gallery: [
+      "/images/wedding-special-embroidered-suit.png",
+      wedding("01-ivory-black-tuxedo.webp"),
+      wedding("02-navy-floral-embroidered-suit.webp"),
+      wedding("03-black-gold-embroidered-tuxedo.webp"),
+      wedding("04-sand-black-lapel-tuxedo.webp"),
+      wedding("05-sand-three-piece-tuxedo.webp"),
+      wedding("06-emerald-velvet-tuxedo.webp"),
+      wedding("07-burgundy-brocade-suit.webp"),
+      wedding("08-navy-bandhgala-suit.webp"),
+      wedding("09-copper-bandhgala-suit.webp"),
+      wedding("10-teal-bandhgala-suit.webp"),
+      wedding("11-ivory-gold-drape-tuxedo.webp"),
+      wedding("12-gold-green-embroidered-suit.webp"),
+      wedding("13-black-silver-three-piece-suit.webp"),
+      wedding("14-black-copper-three-piece-suit.webp"),
+      wedding("15-plum-black-tuxedo.webp"),
+      wedding("16-black-beaded-tuxedo.webp"),
+      wedding("17-ivory-silver-embroidered-suit.webp"),
+      wedding("18-chocolate-brown-three-piece-suit.webp"),
+      wedding("19-ivory-patterned-suit.webp"),
+      suit("11-cream-summer-business.png"),
+      suit("07-burgundy-double-breasted.png"),
+      suit("13-graphite-three-piece.png"),
+    ],
   },
   {
     slug: "wedding-tuxedos-western-suits",
