@@ -16,7 +16,7 @@ export function Header() {
         <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(!open)}>{open ? "Close" : "Menu"}</button>
         <nav id="main-navigation" className={open ? "nav-open" : ""} aria-label="Main navigation">
           {navItems.map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>)}
-          <Link className="button button-small" href="/book" onClick={() => setOpen(false)}>Book a consultation</Link>
+          <Link className="button button-small" href="/book" onClick={() => setOpen(false)}>Book a Free Consultation</Link>
         </nav>
       </header>
     </>

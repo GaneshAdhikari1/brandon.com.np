@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { business } from "@/lib/content";
+import Link from "next/link";
 import "./globals.css";
 
 const serif = Cormorant_Garamond({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
@@ -35,7 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <Footer />
         <a className="floating-whatsapp" href={business.whatsapp} target="_blank" rel="noreferrer" aria-label="Message Brandon Tailoring on WhatsApp">WhatsApp</a>
-        <div className="mobile-actions"><a href={`tel:${business.phoneHref}`}>Call</a><a href={business.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a><a href="/book">Book</a></div>
+        <div className="mobile-actions"><a href={`tel:${business.phoneHref}`}>Call</a><a href={business.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a><Link href="/book">Free Consult</Link></div>
         <Script id="local-business-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </body>
     </html>
