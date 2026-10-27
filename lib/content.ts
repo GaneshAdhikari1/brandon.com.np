@@ -36,8 +36,8 @@ export const collections: Collection[] = [
     audience: "Ladies & Gents",
     description: "Custom-tailored wedding suits, coats, pants and waistcoats planned as a refined, coordinated look for the occasion.",
     options: ["Suit, coat and trouser coordination", "Waistcoat styling", "Fabric and colour guidance", "Details discussed during consultation"],
-    hero: suit("11-cream-summer-business.png"),
-    gallery: [suit("11-cream-summer-business.png"), suit("07-burgundy-double-breasted.png"), suit("13-graphite-three-piece.png")],
+    hero: "/images/wedding-special-embroidered-suit.png",
+    gallery: ["/images/wedding-special-embroidered-suit.png", suit("11-cream-summer-business.png"), suit("07-burgundy-double-breasted.png"), suit("13-graphite-three-piece.png")],
   },
   {
     slug: "wedding-tuxedos-western-suits",
