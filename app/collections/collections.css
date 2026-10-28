@@ -1,0 +1,22 @@
+.page-hero.collections-fabric-hero {
+  background-color: #071b33;
+  background-image: linear-gradient(90deg, rgba(4, 17, 34, .4), rgba(4, 17, 34, .16) 58%, rgba(4, 17, 34, .05)), url("/images/collections-navy-fabric.webp");
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(201, 164, 95, .35);
+}
+
+.collections-fabric-hero h1 {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .25);
+}
+
+.collections-fabric-hero p {
+  color: #e1e7ed;
+}
+
+@media (max-width: 760px) {
+  .page-hero.collections-fabric-hero {
+    background-position: 64% center;
+    background-image: linear-gradient(90deg, rgba(4, 17, 34, .6), rgba(4, 17, 34, .28)), url("/images/collections-navy-fabric.webp");
+  }
+}

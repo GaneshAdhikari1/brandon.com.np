@@ -1,20 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { collections } from "@/lib/content";
 
 type Item={src:string;title:string;category:string[];audience:string;demo?:boolean};
-const suit=(file:string)=>`/images/nepali-luxury-suits-2026/${file}`;
-const items:Item[]=[
-  {src:suit("01-midnight-navy-relaxed.png"),title:"Midnight navy office suit",category:["Office Wear"],audience:"Gents"},
-  {src:suit("15-ink-blue-velvet.png"),title:"Ink blue velvet evening suit",category:["Tuxedos","Party Wear"],audience:"Gents"},
-  {src:suit("13-graphite-three-piece.png"),title:"Graphite three-piece wedding suit",category:["Wedding"],audience:"Gents"},
-  {src:suit("07-burgundy-double-breasted.png"),title:"Burgundy occasion suit",category:["Wedding","Party Wear"],audience:"Gents"},
-  {src:suit("11-cream-summer-business.png"),title:"Cream wedding suit",category:["Wedding"],audience:"Gents"},
-  {src:suit("09-navy-windowpane.png"),title:"Navy windowpane business suit",category:["Office Wear"],audience:"Gents"},
-  {src:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=1400&q=84",title:"Ladies contemporary tailoring direction",category:["Office Wear"],audience:"Ladies",demo:true},
-  {src:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1400&q=84",title:"Ladies occasion-wear direction",category:["Party Wear"],audience:"Ladies",demo:true},
-  {src:"https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=1400&q=84",title:"Traditional Nepali dress direction",category:["Daura Suruwal"],audience:"Gents",demo:true},
-];
+const collectionCategories:Record<string,string>={
+  "wedding-special":"Wedding",
+  "wedding-tuxedos-western-suits":"Tuxedos",
+  "daura-suruwal-national-dress":"Daura Suruwal",
+  "office-wear":"Office Wear",
+  "party-wear":"Party Wear",
+};
+// Use the same photos as each collection so the gallery stays in sync.
+const items:Item[]=collections.flatMap(collection=>collection.gallery.map((src,index)=>{
+  const category=collectionCategories[collection.slug];
+  const audience=collection.audience==="Ladies & Gents"
+    ? (/\/\d+-mens-/.test(src)?"Gents":"Ladies")
+    : collection.audience;
+  const filename=src.split("/").pop()??"";
+  const name=filename.replace(/\.[^.]+$/,"").replace(/^\d+-/,"").replace(/^mens-/,"").replace(/-/g," ");
+  return {src,title:`${category} · ${name.charAt(0).toUpperCase()+name.slice(1)} · ${String(index+1).padStart(2,"0")}`,category:[category],audience,demo:collection.demo};
+}));
 const filters=["All","Wedding","Tuxedos","Daura Suruwal","Office Wear","Party Wear","Ladies","Gents"];
 
 export function GalleryClient({managed=[]}:{managed?:Array<{imageUrl:string;title:string;category:string;audience:string;alt:string;isDemo:boolean}>}){

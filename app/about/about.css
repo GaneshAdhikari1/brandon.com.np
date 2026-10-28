@@ -1,0 +1,24 @@
+.founder-story{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,6vw,6rem);align-items:start}
+.founder-intro h2{max-width:12ch;margin:1rem 0 1.5rem;font-size:clamp(2.8rem,4.8vw,4.8rem)}
+.founder-intro h2 em{font-weight:400;color:#997538}
+.founder-since{display:block;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.founder-prose{color:var(--muted);font-size:1.05rem}
+.founder-prose p:first-child{margin-top:0}.founder-prose p{margin-bottom:1.25rem}.founder-prose strong{color:var(--navy);font-weight:600}
+.founder-managed-story{white-space:pre-line}.founder-prose .button{margin-top:1rem}
+.founder-mission{display:grid;grid-template-columns:1fr 1fr;background:var(--ivory)}
+.founder-portrait{margin:0;align-self:center}.founder-portrait img{width:100%;height:auto}
+.mission-copy{align-self:center;padding:clamp(2rem,6vw,6rem)}
+.mission-copy h2{font-size:clamp(2.6rem,4.6vw,4.7rem);line-height:1.05;margin:1rem 0 2rem}
+.mission-copy h2 em{color:#997538;font-weight:400}.mission-copy p{color:var(--muted);margin-top:1.2rem}.mission-copy strong{color:var(--navy);font-weight:600}
+.workshop-history h2,.team-section h2,.workshop-scenes h2{margin-top:1rem;font-size:clamp(2.6rem,4.5vw,4.5rem)}
+.history-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;list-style:none;margin:3rem 0 0;padding:0}
+.history-timeline li{border-top:1px solid var(--gold);padding-top:1.25rem}.history-year{display:block;font:500 2.7rem/1.1 var(--serif);color:#997538;margin-bottom:1.5rem}
+.history-timeline h3{font-size:1.7rem;line-height:1.12;letter-spacing:-.02em}.history-timeline p{color:var(--muted);font-size:.94rem}
+.team-section{padding:clamp(4rem,7vw,7rem) 0;background:var(--navy);color:white}.team-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.team-cards article{padding:2rem;border:1px solid rgba(215,182,109,.3)}.team-initials{display:grid;place-items:center;width:3.8rem;height:3.8rem;border:1px solid var(--gold);border-radius:50%;font:500 1.6rem var(--serif);color:var(--gold-light);margin-bottom:1.5rem}
+.team-cards h3{font-size:2rem;line-height:1.1}.team-role{display:block;margin-top:.8rem;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-light)}.team-cards p{color:#c9d2dc;font-size:.95rem;margin-top:1.2rem}
+.workshop-image-note{max-width:48rem;color:var(--muted);font-size:.82rem;margin:1.2rem 0 2.5rem}
+.workshop-scene-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}.workshop-scene-grid figure{margin:0}.workshop-scene-grid img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}.workshop-scene-grid figcaption{padding:1rem 0;font:500 1.6rem/1.15 var(--serif);color:var(--navy)}
+@media(max-width:1000px){.history-timeline{grid-template-columns:repeat(2,1fr)}.team-cards{gap:1rem}.team-cards article{padding:1.3rem}.team-cards h3{font-size:1.7rem}}
+@media(max-width:760px){.founder-story,.founder-mission{grid-template-columns:1fr}.founder-intro h2{max-width:15ch}.mission-copy{padding:3rem 1.25rem}.team-cards,.workshop-scene-grid{grid-template-columns:1fr}.team-cards article{padding:1.7rem}.workshop-scene-grid{gap:1.7rem}.workshop-scene-grid figcaption{font-size:1.8rem}.history-timeline{gap:2rem 1.2rem}.history-timeline h3{font-size:1.5rem}}
+@media(max-width:400px){.history-timeline{grid-template-columns:1fr}}

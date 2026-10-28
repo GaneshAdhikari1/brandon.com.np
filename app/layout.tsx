@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { business } from "@/lib/content";
 import { SiteLink } from "@/components/SiteLink";
 import "./globals.css";
+import "./hero-refresh.css";
 
 const serif = Cormorant_Garamond({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
 const sans = Manrope({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
@@ -25,8 +26,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     name: business.name,
     url: business.siteUrl,
     telephone: business.phoneHref,
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "00:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday", "Sunday"], opens: "07:00", closes: "22:00" },
+    ],
     address: { "@type": "PostalAddress", addressLocality: "Bagbazar", addressRegion: "Kathmandu", addressCountry: "NP" },
-    sameAs: [business.facebook, business.tiktok],
+    sameAs: [business.facebook, business.tiktok, business.instagram],
   };
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>

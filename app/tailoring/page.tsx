@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/PageHero";
+import { FabricPageHero as PageHero } from "@/components/PageHero";
 import { whatsappUrl } from "@/lib/content";
 import { SiteLink as Link } from "@/components/SiteLink";
 export const metadata:Metadata={title:"Ladies & Gents Tailoring",description:"Personal fit, fabric selection and styling for ladies and gents tailoring in Bagbazar, Kathmandu."};

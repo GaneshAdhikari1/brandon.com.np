@@ -1,6 +1,6 @@
 import { CollectionCards } from "@/components/CollectionCards";
 import { SectionHeading } from "@/components/SectionHeading";
-import { business, collections, whatsappUrl } from "@/lib/content";
+import { business, whatsappUrl } from "@/lib/content";
 import { SiteLink } from "@/components/SiteLink";
 
 const process = [
@@ -15,7 +15,7 @@ export default function Home() {
   return <>
     <section className="home-hero">
       <div className="hero-copy"><span className="eyebrow">Ladies & gents tailoring · Bagbazar</span><h1>Tailored for Your <em>Finest Moments.</em></h1><p>Custom tailoring for ladies and gents in Bagbazar, Kathmandu—from wedding suits and tuxedos to traditional Nepali dress, office wear, and party wear.</p><div className="button-row"><SiteLink className="button button-light" href="/book">Book a Free Consultation</SiteLink><SiteLink className="button button-outline-light" href="/collections">Explore Collections</SiteLink></div></div>
-      <div className="hero-images"><figure><img src={collections[0].hero} alt="Wedding suit style from the Brandon collection" /></figure><figure><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=1400&q=84" alt="Demonstration image of modern ladies tailoring" /><figcaption>Demonstration image</figcaption></figure></div>
+      <div className="hero-images hero-images-pair"><figure><img src="/images/home-tailoring-pair.webp" alt="Gents ceremonial tailoring and ladies professional tailoring together in the Brandon fabric showroom" /><figcaption>Ladies &amp; gents · Tailored with distinction</figcaption></figure></div>
       <div className="hero-line">Wedding · Traditional · Office · Party</div>
     </section>
     <section className="section container"><SectionHeading eyebrow="Five collections" title="Dress for the moment—and for yourself." copy="Explore traditional and modern tailoring directions. Exact garment options are confirmed with the business before an order begins." /><CollectionCards limit={5} /></section>
