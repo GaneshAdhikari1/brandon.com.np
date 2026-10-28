@@ -1,4 +1,30 @@
-# vinext-starter
+# Brandon.com.np
+
+## Deploy on Vercel
+
+The default commands use Next.js and generate `.next`, including the route manifests required by Vercel. Do not use the Vinext build or `dist` as the Vercel output.
+
+1. Commit and push the project to GitHub.
+2. In Vercel, select framework **Next.js**, root directory **repository root**, build command **npm run build**, install command **npm ci**, and output directory **.next** (or reset the output override to the Next.js default).
+3. Use Node.js **22.x** or newer supported by the project.
+4. Redeploy the latest Git commit. Clear any old `vinext build` or `dist` dashboard overrides.
+
+`vercel.json` records the framework, build command and output directory so future deployments use the correct settings.
+
+Public pages use the checked-in collection and business content on Vercel. Both forms send to FormSubmit independently of Cloudflare D1; complete the one-time FormSubmit activation for `brandonstoresales@gmail.com`. Email delivery still requires a received live test after activation.
+
+The Sites-specific staff admin requires Cloudflare D1 and verified Sites gateway authentication. It is intentionally disabled on Vercel; setting `ADMIN_EMAIL` alone does not enable it. Do not trust incoming ChatGPT identity headers on a public Node server.
+
+### Commands
+
+- `npm run dev`: Next.js development server, port 5173.
+- `npm run build`: production Next.js build for Vercel.
+- `npm start`: serve the Next.js production build.
+- `npm run sites:dev`, `npm run sites:build`, `npm run sites:start`: retained Cloudflare/Sites workflow.
+
+The remaining starter notes below describe the Cloudflare/Sites workflow; use the `sites:*` commands for that host.
+
+## Original Sites starter reference
 
 A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
 
